@@ -265,7 +265,7 @@ class XLSX implements \Iterator, \Countable
             {
                 foreach ($this -> StylesXML -> cellXfs -> xf as $Index => $XF)
                 {
-                    if ($XF -> attributes() -> applyNumberFormat)
+                    if ((int)$XF -> attributes() -> numFmtId >= 164)
                     {
                         $FormatId = (int)$XF -> attributes() -> numFmtId;
                         // If format ID >= 164, it is a custom format and should be read from styleSheet\numFmts
@@ -617,7 +617,7 @@ class XLSX implements \Iterator, \Countable
         {
             return $Value;
         }
-
+        
         if (!empty($this -> Styles[$Index]))
         {
             $Index = $this -> Styles[$Index];
@@ -633,7 +633,7 @@ class XLSX implements \Iterator, \Countable
         {
             $Format = $this -> ParsedFormatCache[$Index];
         }
-
+		
         if (!$Format)
         {
             $Format = array(
@@ -902,7 +902,10 @@ class XLSX implements \Iterator, \Countable
                 // Currency/Accounting
                 if ($Format['Currency'])
                 {
-                    $Value = preg_replace('', $Format['Currency'], $Value);
+                    $Value = $Format['Currency'] . $Value;
+                    
+                    // @todo Currency formatting is not functioning the correct way, above a dirty fix
+                    //$Value = preg_replace('', $Format['Currency'], $Value);
                 }
             }
             
