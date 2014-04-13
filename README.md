@@ -6,6 +6,12 @@ So far XLSX, ODS and text/CSV file parsing should be memory-efficient. XLS file 
 from http://code.google.com/p/php-excel-reader/ which, sadly, has memory issues with bigger spreadsheets, as it reads the
 data all at once and keeps it all in memory.
 
+### Updates from Nuovo's reader
+* No global pollution
+* Added namespaces
+* Returns DateTime object for datetime cells (no csv, because it's simple text), this is a modification for XLS. For XLSX and ODS, DateTiem returning is on by default
+* excel_reader2.php is refactored for clean global scope. Scope of methods and variables is not checked. Removed some PHP4 functions
+
 ### Requirements:
 *  PHP 5.3.0 or newer
 *  PHP must have Zip file support (see http://php.net/manual/en/zip.installation.php)

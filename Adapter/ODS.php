@@ -10,7 +10,7 @@ class ODS implements \Iterator, \Countable
 {
     private $Options = array(
         'TempDir' => '',
-        'ReturnDateTimeObjects' => false
+        'ReturnDateTimeObjects' => true
     );
 
     /**

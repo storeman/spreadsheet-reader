@@ -26,7 +26,7 @@ class XLSX implements \Iterator, \Countable
 
     private $Options = array(
         'TempDir' => '',
-        'ReturnDateTimeObjects' => false
+        'ReturnDateTimeObjects' => true
     );
 
     private static $RuntimeInfo = array(
