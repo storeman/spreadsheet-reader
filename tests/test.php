@@ -26,8 +26,9 @@
 	}
 
 	// Excel reader from http://code.google.com/p/php-excel-reader/
-	require('php-excel-reader/excel_reader2.php');
-	require('SpreadsheetReader.php');
+	require '../OLERead.php';
+	require '../ExcelReader.php';
+	require '../SpreadsheetReader.php';
 
 	date_default_timezone_set('UTC');
 
@@ -38,7 +39,7 @@
 
 	try
 	{
-		$Spreadsheet = new SpreadsheetReader($Filepath);
+		$Spreadsheet = new SpreadsheetReader\SpreadsheetReader($Filepath);
 		$BaseMem = memory_get_usage();
 
 		$Sheets = $Spreadsheet -> Sheets();

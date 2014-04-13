@@ -1,0 +1,10 @@
+integer,1
+float,"1,23"
+date,2014-01-01
+datetime,01-01-2014 15:30:11
+currency,"€ 50,00"
+percent,"15,00%"
+,
+number 1,12
+number 2,20
+sum,32
