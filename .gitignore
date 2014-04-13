@@ -1,2 +1,5 @@
 .DS_Store
 test/*
+/.settings/org.eclipse.php.core.prefs
+/.buildpath
+/.project
