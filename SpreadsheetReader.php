@@ -130,7 +130,7 @@ namespace SpreadsheetReader;
 			if ($this -> Type == self::TYPE_XLS)
 			{
 				self::Load(self::TYPE_XLS);
-				$this -> Handle = new XLS($Filepath);
+				$this -> Handle = new Adapter\XLS($Filepath);
 				if ($this -> Handle -> Error)
 				{
 					$this -> Handle -> __destruct();
