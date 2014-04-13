@@ -5,7 +5,8 @@
  * @version 0.5.6
  * @author Martins Pilsetnieks
  */
-	class SpreadsheetReader implements Iterator, Countable
+namespace SpreadsheetReader;
+	class SpreadsheetReader implements \Iterator, \Countable
 	{
 		const TYPE_XLSX = 'XLSX';
 		const TYPE_XLS = 'XLS';
@@ -41,7 +42,7 @@
 		{
 			if (!is_readable($Filepath))
 			{
-				throw new Exception('SpreadsheetReader: File ('.$Filepath.') not readable');
+				throw new \Exception('SpreadsheetReader: File ('.$Filepath.') not readable');
 			}
 
 			// To avoid timezone warnings and exceptions for formatting dates retrieved from files
@@ -58,7 +59,7 @@
 			}
 
 			$Extension = strtolower(pathinfo($OriginalFilename, PATHINFO_EXTENSION));
-
+            
 			switch ($MimeType)
 			{
 				case 'text/csv':
@@ -124,12 +125,12 @@
 						break;
 				}
 			}
-
+            
 			// Pre-checking XLS files, in case they are renamed CSV or XLSX files
 			if ($this -> Type == self::TYPE_XLS)
 			{
 				self::Load(self::TYPE_XLS);
-				$this -> Handle = new SpreadsheetReader_XLS($Filepath);
+				$this -> Handle = new XLS($Filepath);
 				if ($this -> Handle -> Error)
 				{
 					$this -> Handle -> __destruct();
@@ -151,18 +152,18 @@
 			{
 				case self::TYPE_XLSX:
 					self::Load(self::TYPE_XLSX);
-					$this -> Handle = new SpreadsheetReader_XLSX($Filepath);
+					$this -> Handle = new Adapter\XLSX($Filepath);
 					break;
 				case self::TYPE_CSV:
 					self::Load(self::TYPE_CSV);
-					$this -> Handle = new SpreadsheetReader_CSV($Filepath, $this -> Options);
+					$this -> Handle = new Adapter\CSV($Filepath, $this -> Options);
 					break;
 				case self::TYPE_XLS:
 					// Everything already happens above
 					break;
 				case self::TYPE_ODS:
 					self::Load(self::TYPE_ODS);
-					$this -> Handle = new SpreadsheetReader_ODS($Filepath, $this -> Options);
+					$this -> Handle = new Adapter\ODS($Filepath, $this -> Options);
 					break;
 			}
 		}
@@ -201,12 +202,12 @@
 		{
 			if (!in_array($Type, array(self::TYPE_XLSX, self::TYPE_XLS, self::TYPE_CSV, self::TYPE_ODS)))
 			{
-				throw new Exception('SpreadsheetReader: Invalid type ('.$Type.')');
+				throw new \Exception('SpreadsheetReader: Invalid type ('.$Type.')');
 			}
 
-			if (!class_exists('SpreadsheetReader_'.$Type))
+			if (!class_exists('SpreadsheetReader\\Adapter\\'.$Type))
 			{
-				require(dirname(__FILE__).DIRECTORY_SEPARATOR.'SpreadsheetReader_'.$Type.'.php');
+				require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Adapter'. DIRECTORY_SEPARATOR .$Type.'.php');
 			}
 		}
 

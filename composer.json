@@ -4,7 +4,7 @@
 	"keywords": ["spreadsheet", "xls", "xlsx", "ods", "csv", "excel", "openoffice"],
 	"homepage": "https://github.com/nuovo/spreadsheet-reader",
 	"version": "0.5.6",
-	"time": "2013-09-04",
+	"time": "2014-04-13",
 	"type": "library",
 	"license": ["MIT"],
 	"authors": [
