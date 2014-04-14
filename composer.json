@@ -22,6 +22,6 @@
 		"ext-zip": "*"
 	},
 	"autoload": {
-        "psr-4": { "SpreadsheetReader\\": "./src" }
+        "psr-4": { "SpreadsheetReader\\": "src" }
     }
 }
